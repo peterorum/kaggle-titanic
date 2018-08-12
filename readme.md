@@ -4,7 +4,7 @@
 
 * 1502 / 2224 people killed. 67.53%
 * Not enough lifeboats
-* W=More likely to survive: women, children, upper-class
+* More likely to survive: women, children, upper-class
 
 ## Challenge
 

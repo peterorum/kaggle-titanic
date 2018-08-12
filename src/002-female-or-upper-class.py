@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
-# baseline: only females survive
-# kaggle score 0.7655
+# only females or upper class survive
+# kaggle score 0.70813
 
 import sys  # pylint: disable=unused-import
 import pandas as pd
@@ -12,7 +12,7 @@ test = pd.read_csv("../data/test.csv")
 
 #-------- main
 
-test['Survived'] = test.Sex.apply(lambda x: 1 if x == 'female' else 0)
+test['Survived'] = test.apply(lambda x: 1 if (x.Sex == 'female') | (x.Pclass == 1) else 0, axis=1)
 
 print(test.head())
 print(test.describe())
