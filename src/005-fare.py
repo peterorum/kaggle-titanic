@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
 # use age for lineaer regression
-# accuracy 0.7928
+# accuracy 0.7939
 # kaggle score 0.7703
 
 import os
@@ -18,7 +18,7 @@ from sklearn.metrics import accuracy_score
 sys.path.append(os.path.abspath("../../utils"))
 from pjo_plot import plot_histograms  # pylint: disable=import-error,wrong-import-position,unused-import
 
-warnings.simplefilter(action='ignore', category=RuntimeWarning)
+warnings.simplefilter(action='ignore')
 pd.options.display.float_format = '{:.4f}'.format
 
 # load data
@@ -37,8 +37,14 @@ test.Fare.fillna(test.Fare.mean(), inplace=True)
 # train.Fare = np.log(1 + train.Fare)
 # test.Fare = np.log(1 + test.Fare)
 
+
 # print(train.describe())
 
+# look for relationship to survival
+# grouped = train[['Age', 'Survived']].groupby('Age').sum()
+# print(grouped.describe())
+# plt.plot(grouped.index, grouped.Survived)
+# plt.show()
 
 # plot_histograms(train)
 
