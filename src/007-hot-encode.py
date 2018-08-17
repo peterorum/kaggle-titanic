@@ -1,8 +1,6 @@
-# ! ~/anaconda3/bin/python3
-# !/usr/local/bin/python3
 # use xgboost
-# accuracy 0.87
-# kaggle score 0.7655
+# accuracy 0.874
+# kaggle score 0.7703
 
 import os
 import sys  # pylint: disable=unused-import
@@ -29,24 +27,27 @@ test = pd.read_csv("../data/test.csv")
 
 
 # fill missing values with mean
-meanAge = train.Age.mean()
-train.Age.fillna(meanAge, inplace=True)
-test.Age.fillna(meanAge, inplace=True)
+mean_age = train.Age.mean()
+train.Age.fillna(mean_age, inplace=True)
+test.Age.fillna(mean_age, inplace=True)
 
 train.Fare.fillna(train.Fare.mean(), inplace=True)
 test.Fare.fillna(test.Fare.mean(), inplace=True)
 
-ohe = ce.OneHotEncoder(cols=['Sex'])
-print(ohe)
-sys.exit(0)
+# need to combine ot encode
 
+all_data = pd.concat([train, test])
+
+onehot_encoder = ce.OneHotEncoder(cols=['Sex', 'Embarked'])
+all_data = onehot_encoder.fit_transform(all_data)
+
+# separate again
+train = all_data[all_data.PassengerId.isin(train.PassengerId)]
+test = all_data[all_data.PassengerId.isin(test.PassengerId)]
 
 #-------- main
 
-
-train = train[['Fare', 'Age', 'is_female', 'Pclass', 'Survived']]
-
-x_train = train.drop('Survived', axis=1)
+x_train = train.drop(['Survived', 'PassengerId', 'SibSp', 'Parch', 'Name', 'Ticket', 'Cabin'], axis=1)
 y_train = train.Survived
 x_test = test[x_train.columns]
 
