@@ -8,11 +8,15 @@ import os
 import sys  # pylint: disable=unused-import
 
 import warnings
+import matplotlib.pyplot as plt  # pylint: disable=unused-import
 import numpy as np
 import pandas as pd
 import xgboost as xgb
 from sklearn.metrics import accuracy_score
 # from sklearn.preprocessing import StandardScaler
+
+sys.path.append(os.path.abspath("../../utils"))
+from pjo_plot import plot_histograms  # pylint: disable=import-error,wrong-import-position,unused-import
 
 warnings.simplefilter(action='ignore')
 pd.options.display.float_format = '{:.4f}'.format
