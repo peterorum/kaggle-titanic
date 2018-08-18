@@ -1,5 +1,3 @@
-#!/usr/local/bin/python3
-
 # use xgboost
 # accuracy 0.87
 # kaggle score 0.7655
