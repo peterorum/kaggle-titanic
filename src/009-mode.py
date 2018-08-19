@@ -25,15 +25,6 @@ pd.options.display.float_format = '{:.4f}'.format
 train = pd.read_csv('../data/train.csv')
 test = pd.read_csv("../data/test.csv")
 
-
-# fill missing values with mean
-mean_age = train.Age.mean()
-train.Age.fillna(mean_age, inplace=True)
-test.Age.fillna(mean_age, inplace=True)
-
-train.Fare.fillna(train.Fare.mean(), inplace=True)
-test.Fare.fillna(test.Fare.mean(), inplace=True)
-
 # first letter if a string
 
 
@@ -91,6 +82,11 @@ all_data = pd.concat([train, test])
 #     if all_data[col].isnull().sum() > 0:
 #         mode = all_data[col].mode()[0]
 #         all_data[col].fillna(mode, inplace=True)
+
+# replace missing values with mean
+for col in numeric_cols:
+    if all_data[col].isna().any():
+        all_data[col].fillna(all_data[col].mean(), inplace=True)
 
 onehot_encoder = ce.OneHotEncoder(cols=categorical_cols)
 all_data = onehot_encoder.fit_transform(all_data)
