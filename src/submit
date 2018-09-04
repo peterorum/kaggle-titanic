@@ -5,4 +5,4 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-kaggle competitions submit -c titanic -f ../data/submission.csv  -m "$1"
+kaggle competitions submit -c titanic -f submission.csv  -m "$1"

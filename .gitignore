@@ -109,4 +109,5 @@ venv.bak/
 
 *.sublime-*
 
-data/
+input/
+submission*.csv
