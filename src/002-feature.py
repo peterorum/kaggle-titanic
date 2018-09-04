@@ -1,5 +1,5 @@
-# baseline: all died 0.616
-# kaggle score 0.626
+# females survived 0.787
+# kaggle score 0.7655
 
 import sys  # pylint: disable=unused-import
 from time import time
@@ -22,14 +22,13 @@ start_time = time()
 
 target = 'Survived'
 
-result = 0
-
-train['predicted'] = result
+train['predicted'] = train.Sex.apply(lambda x: 1 if x == 'female' else 0)
 
 score = accuracy_score(train[target], train.predicted)
-print('score', score)
+print('score to maximize', score)
 
-test['predicted'] = result
+test['predicted'] = test.Sex.apply(lambda x: 1 if x == 'female' else 0)
+
 
 predicted = pd.DataFrame({
     "PassengerId": test.PassengerId,
