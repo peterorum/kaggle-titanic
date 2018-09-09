@@ -14,8 +14,8 @@ import warnings
 warnings.simplefilter(action='ignore', category=RuntimeWarning)
 
 # load data
-train = pd.read_csv('../data/train.csv')
-test = pd.read_csv("../data/test.csv")
+train = pd.read_csv('../input/train.csv')
+test = pd.read_csv("../input/test.csv")
 
 #-------- main
 
@@ -53,4 +53,4 @@ predicted = pd.DataFrame({
     "Survived": lr_test_pred
 })
 
-predicted.to_csv('../data/submission.csv', index=False)
+predicted.to_csv('../input/submission.csv', index=False)

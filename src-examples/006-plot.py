@@ -22,8 +22,8 @@ warnings.simplefilter(action='ignore')
 pd.options.display.float_format = '{:.4f}'.format
 
 # load data
-train = pd.read_csv('../data/train.csv')
-test = pd.read_csv("../data/test.csv")
+train = pd.read_csv('../input/train.csv')
+test = pd.read_csv("../input/test.csv")
 
 
 # fill missing values with mean
@@ -63,5 +63,5 @@ predicted = pd.DataFrame({
     "Survived": reg_test_pred
 })
 
-predicted.to_csv('../data/submission.csv', index=False)
+predicted.to_csv('../input/submission.csv', index=False)
 print('submission saved')

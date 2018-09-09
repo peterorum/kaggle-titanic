@@ -7,8 +7,8 @@ import sys  # pylint: disable=unused-import
 import pandas as pd
 
 # load data
-train = pd.read_csv('../data/train.csv')
-test = pd.read_csv("../data/test.csv")
+train = pd.read_csv('../input/train.csv')
+test = pd.read_csv("../input/test.csv")
 
 #-------- main
 
@@ -19,4 +19,4 @@ print(test.describe())
 
 predictions = test[['PassengerId', 'Survived']]
 
-predictions.to_csv('../data/submission.csv', index=False)
+predictions.to_csv('../input/submission.csv', index=False)
